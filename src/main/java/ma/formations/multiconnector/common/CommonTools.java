@@ -15,6 +15,10 @@ public class CommonTools {
     @Value("${graphql.date.format}")
     private String dateFormat;
 
+    public String getDateFormat() {
+        return dateFormat;
+    }
+
     public String dateToString(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         return formatter.format(date);

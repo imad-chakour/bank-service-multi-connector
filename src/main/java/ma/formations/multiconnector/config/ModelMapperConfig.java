@@ -2,10 +2,13 @@ package ma.formations.multiconnector.config;
 
 import lombok.AllArgsConstructor;
 import ma.formations.multiconnector.common.CommonTools;
+import ma.formations.multiconnector.dtos.bankaccount.AddBankAccountRequest;
 import ma.formations.multiconnector.service.exception.BusinessException;
+import ma.formations.multiconnector.service.model.BankAccount;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,6 +47,14 @@ public class ModelMapperConfig {
         };
         modelMapper.addConverter(dateToStringConverter);
         modelMapper.addConverter(stringToDateConverter);
+
+        // Configure mapping to skip customer field when mapping AddBankAccountRequest to BankAccount
+        modelMapper.addMappings(new PropertyMap<AddBankAccountRequest, BankAccount>() {
+            @Override
+            protected void configure() {
+                skip(destination.getCustomer());
+            }
+        });
 
         return modelMapper;
     }

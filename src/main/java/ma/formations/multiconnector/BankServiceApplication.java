@@ -3,13 +3,24 @@ package ma.formations.multiconnector;
 import ma.formations.multiconnector.dtos.bankaccount.AddBankAccountRequest;
 import ma.formations.multiconnector.dtos.customer.AddCustomerRequest;
 import ma.formations.multiconnector.dtos.transaction.AddWirerTransferRequest;
+import ma.formations.multiconnector.dtos.user.PermissionVo;
+import ma.formations.multiconnector.dtos.user.RoleVo;
+import ma.formations.multiconnector.dtos.user.UserVo;
+import ma.formations.multiconnector.enums.Permissions;
+import ma.formations.multiconnector.enums.Roles;
 import ma.formations.multiconnector.service.IBankAccountService;
 import ma.formations.multiconnector.service.ICustomerService;
 import ma.formations.multiconnector.service.ITransactionService;
+import ma.formations.multiconnector.service.IUserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class BankServiceApplication {
@@ -18,6 +29,105 @@ public class BankServiceApplication {
         SpringApplication.run(BankServiceApplication.class, args);
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    CommandLineRunner initSecurityData(IUserService userService) {
+        return args -> {
+            // Ajouter toutes les permissions
+            Arrays.stream(Permissions.values()).toList().forEach(permission ->
+                    userService.save(PermissionVo.builder().authority(permission.name()).build())
+            );
+
+            //Agent guichet pour toutes les opérations CRUD.
+            RoleVo roleaAgentGuichet = RoleVo.builder().
+                    authority(Roles.ROLE_AGENT_GUICHET.name()).
+                    authorities(List.of(
+                            userService.getPermissionByName(Permissions.GET_ALL_CUSTUMERS.name()),
+                            userService.getPermissionByName(Permissions.GET_CUSTOMER_BY_IDENTITY.name()),
+                            userService.getPermissionByName(Permissions.CREATE_CUSTOMER.name()),
+                            userService.getPermissionByName(Permissions.UPDATE_CUSTOMER.name()),
+                            userService.getPermissionByName(Permissions.DELETE_CUSTOMER.name()),
+                            userService.getPermissionByName(Permissions.GET_ALL_BANK_ACCOUNT.name()),
+                            userService.getPermissionByName(Permissions.GET_BANK_ACCOUNT_BY_RIB.name()),
+                            userService.getPermissionByName(Permissions.CREATE_BANK_ACCOUNT.name()))).
+                    build();
+            //Agent guichet pour lecture seule.
+            RoleVo roleaAgentGuichetGet = RoleVo.builder().
+                    authority(Roles.ROLE_AGENT_GUICHET_GET.name()).
+                    authorities(List.of(
+                            userService.getPermissionByName(Permissions.GET_ALL_CUSTUMERS.name()),
+                            userService.getPermissionByName(Permissions.GET_CUSTOMER_BY_IDENTITY.name()),
+                            userService.getPermissionByName(Permissions.GET_ALL_BANK_ACCOUNT.name()),
+                            userService.getPermissionByName(Permissions.GET_BANK_ACCOUNT_BY_RIB.name()))).
+                    build();
+            RoleVo roleClient = RoleVo.builder().
+                    authority(Roles.ROLE_CLIENT.name()).
+                    authorities(List.of(
+                            userService.getPermissionByName(Permissions.GET_CUSTOMER_BY_IDENTITY.name()),
+                            userService.getPermissionByName(Permissions.GET_BANK_ACCOUNT_BY_RIB.name()),
+                            userService.getPermissionByName(Permissions.ADD_WIRED_TRANSFER.name()),
+                            userService.getPermissionByName(Permissions.GET_TRANSACTIONS.name())
+                    )).build();
+
+            userService.save(roleaAgentGuichet);
+            userService.save(roleaAgentGuichetGet);
+            userService.save(roleClient);
+
+            // Créer les utilisateurs
+            UserVo agentGuichet = UserVo.builder()
+                    .username("agentguichet")
+                    .password("agentguichet")
+                    .roles(List.of(roleaAgentGuichet))
+                    .accountNonExpired(true)
+                    .accountNonLocked(true)
+                    .credentialsNonExpired(true)
+                    .enabled(true)
+                    .email("agent@bank.com")
+                    .build();
+
+            UserVo agentGuichet2 = UserVo.builder()
+                    .username("agentguichet2")
+                    .password("agentguichet2")
+                    .roles(List.of(roleaAgentGuichetGet))
+                    .accountNonExpired(true)
+                    .accountNonLocked(true)
+                    .credentialsNonExpired(true)
+                    .enabled(true)
+                    .email("agent2@bank.com")
+                    .build();
+
+            UserVo client = UserVo.builder()
+                    .username("client")
+                    .password("client")
+                    .roles(List.of(roleClient))
+                    .accountNonExpired(true)
+                    .accountNonLocked(true)
+                    .credentialsNonExpired(true)
+                    .enabled(true)
+                    .email("client@bank.com")
+                    .build();
+
+            UserVo admin = UserVo.builder()
+                    .username("admin")
+                    .password("admin")
+                    .roles(List.of(roleaAgentGuichet, roleClient))
+                    .accountNonExpired(true)
+                    .accountNonLocked(true)
+                    .credentialsNonExpired(true)
+                    .enabled(true)
+                    .email("admin@bank.com")
+                    .build();
+
+            userService.save(agentGuichet);
+            userService.save(agentGuichet2);
+            userService.save(client);
+            userService.save(admin);
+        };
+    }
 
     @Bean
     CommandLineRunner initDataBase(ICustomerService customerService,
@@ -113,5 +223,7 @@ public class BankServiceApplication {
                     username("user2").
                     build());
         };
+
+
     }
 }

@@ -31,7 +31,7 @@ public class BankAccountServiceImpl implements IBankAccountService {
     @Override
     public AddBankAccountResponse saveBankAccount(AddBankAccountRequest dto) {
         BankAccount bankAccount = modelMapper.map(dto, BankAccount.class);
-        Customer customerP = customerRepository.findByIdentityRef(bankAccount.getCustomer().getIdentityRef()).orElseThrow(
+        Customer customerP = customerRepository.findByIdentityRef(dto.getCustomerIdentityRef()).orElseThrow(
                 () -> new BusinessException(String.format("No customer with the identity: %s exist", dto.getCustomerIdentityRef())));
         bankAccount.setAccountStatus(AccountStatus.OPENED);
         bankAccount.setCustomer(customerP);

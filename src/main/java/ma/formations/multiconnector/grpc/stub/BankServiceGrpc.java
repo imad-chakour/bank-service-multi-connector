@@ -1,30 +1,18 @@
 package ma.formations.multiconnector.grpc.stub;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
-@javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.15.0)",
+@jakarta.annotation.Generated(
+    value = "by gRPC proto compiler (version 1.59.0)",
     comments = "Source: bank.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class BankServiceGrpc {
 
   private BankServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "BankService";
+  public static final java.lang.String SERVICE_NAME = "BankService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest,
@@ -41,22 +29,21 @@ public final class BankServiceGrpc {
     if ((getCustomersMethod = BankServiceGrpc.getCustomersMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getCustomersMethod = BankServiceGrpc.getCustomersMethod) == null) {
-          BankServiceGrpc.getCustomersMethod = getCustomersMethod = 
+          BankServiceGrpc.getCustomersMethod = getCustomersMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest, ma.formations.multiconnector.grpc.stub.Bank.CustomersResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "customers"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "customers"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.CustomersResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("customers"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("customers"))
+              .build();
         }
-     }
-     return getCustomersMethod;
+      }
+    }
+    return getCustomersMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest,
@@ -73,22 +60,21 @@ public final class BankServiceGrpc {
     if ((getCustomerByIdentityMethod = BankServiceGrpc.getCustomerByIdentityMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getCustomerByIdentityMethod = BankServiceGrpc.getCustomerByIdentityMethod) == null) {
-          BankServiceGrpc.getCustomerByIdentityMethod = getCustomerByIdentityMethod = 
+          BankServiceGrpc.getCustomerByIdentityMethod = getCustomerByIdentityMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest, ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "customerByIdentity"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "customerByIdentity"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("customerByIdentity"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("customerByIdentity"))
+              .build();
         }
-     }
-     return getCustomerByIdentityMethod;
+      }
+    }
+    return getCustomerByIdentityMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest,
@@ -105,22 +91,21 @@ public final class BankServiceGrpc {
     if ((getCreateCustomerMethod = BankServiceGrpc.getCreateCustomerMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getCreateCustomerMethod = BankServiceGrpc.getCreateCustomerMethod) == null) {
-          BankServiceGrpc.getCreateCustomerMethod = getCreateCustomerMethod = 
+          BankServiceGrpc.getCreateCustomerMethod = getCreateCustomerMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest, ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "createCustomer"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "createCustomer"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("createCustomer"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("createCustomer"))
+              .build();
         }
-     }
-     return getCreateCustomerMethod;
+      }
+    }
+    return getCreateCustomerMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest,
@@ -137,22 +122,21 @@ public final class BankServiceGrpc {
     if ((getUpdateCustomerMethod = BankServiceGrpc.getUpdateCustomerMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getUpdateCustomerMethod = BankServiceGrpc.getUpdateCustomerMethod) == null) {
-          BankServiceGrpc.getUpdateCustomerMethod = getUpdateCustomerMethod = 
+          BankServiceGrpc.getUpdateCustomerMethod = getUpdateCustomerMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest, ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "updateCustomer"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "updateCustomer"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("updateCustomer"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("updateCustomer"))
+              .build();
         }
-     }
-     return getUpdateCustomerMethod;
+      }
+    }
+    return getUpdateCustomerMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest,
@@ -169,22 +153,21 @@ public final class BankServiceGrpc {
     if ((getDeleteCustomerMethod = BankServiceGrpc.getDeleteCustomerMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getDeleteCustomerMethod = BankServiceGrpc.getDeleteCustomerMethod) == null) {
-          BankServiceGrpc.getDeleteCustomerMethod = getDeleteCustomerMethod = 
+          BankServiceGrpc.getDeleteCustomerMethod = getDeleteCustomerMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest, ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "deleteCustomer"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "deleteCustomer"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("deleteCustomer"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("deleteCustomer"))
+              .build();
         }
-     }
-     return getDeleteCustomerMethod;
+      }
+    }
+    return getDeleteCustomerMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest,
@@ -201,22 +184,21 @@ public final class BankServiceGrpc {
     if ((getBankAccountsMethod = BankServiceGrpc.getBankAccountsMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getBankAccountsMethod = BankServiceGrpc.getBankAccountsMethod) == null) {
-          BankServiceGrpc.getBankAccountsMethod = getBankAccountsMethod = 
+          BankServiceGrpc.getBankAccountsMethod = getBankAccountsMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest, ma.formations.multiconnector.grpc.stub.Bank.BankAccountsResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "bankAccounts"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "bankAccounts"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.BankAccountsResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("bankAccounts"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("bankAccounts"))
+              .build();
         }
-     }
-     return getBankAccountsMethod;
+      }
+    }
+    return getBankAccountsMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest,
@@ -233,22 +215,21 @@ public final class BankServiceGrpc {
     if ((getBankAccountByRibMethod = BankServiceGrpc.getBankAccountByRibMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getBankAccountByRibMethod = BankServiceGrpc.getBankAccountByRibMethod) == null) {
-          BankServiceGrpc.getBankAccountByRibMethod = getBankAccountByRibMethod = 
+          BankServiceGrpc.getBankAccountByRibMethod = getBankAccountByRibMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest, ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "bankAccountByRib"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "bankAccountByRib"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("bankAccountByRib"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("bankAccountByRib"))
+              .build();
         }
-     }
-     return getBankAccountByRibMethod;
+      }
+    }
+    return getBankAccountByRibMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest,
@@ -265,22 +246,21 @@ public final class BankServiceGrpc {
     if ((getAddBankAccountMethod = BankServiceGrpc.getAddBankAccountMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getAddBankAccountMethod = BankServiceGrpc.getAddBankAccountMethod) == null) {
-          BankServiceGrpc.getAddBankAccountMethod = getAddBankAccountMethod = 
+          BankServiceGrpc.getAddBankAccountMethod = getAddBankAccountMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest, ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "addBankAccount"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "addBankAccount"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("addBankAccount"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("addBankAccount"))
+              .build();
         }
-     }
-     return getAddBankAccountMethod;
+      }
+    }
+    return getAddBankAccountMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest,
@@ -297,22 +277,21 @@ public final class BankServiceGrpc {
     if ((getAddWirerTransferMethod = BankServiceGrpc.getAddWirerTransferMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getAddWirerTransferMethod = BankServiceGrpc.getAddWirerTransferMethod) == null) {
-          BankServiceGrpc.getAddWirerTransferMethod = getAddWirerTransferMethod = 
+          BankServiceGrpc.getAddWirerTransferMethod = getAddWirerTransferMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest, ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "addWirerTransfer"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "addWirerTransfer"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("addWirerTransfer"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("addWirerTransfer"))
+              .build();
         }
-     }
-     return getAddWirerTransferMethod;
+      }
+    }
+    return getAddWirerTransferMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest,
@@ -329,29 +308,35 @@ public final class BankServiceGrpc {
     if ((getGetTransactionsMethod = BankServiceGrpc.getGetTransactionsMethod) == null) {
       synchronized (BankServiceGrpc.class) {
         if ((getGetTransactionsMethod = BankServiceGrpc.getGetTransactionsMethod) == null) {
-          BankServiceGrpc.getGetTransactionsMethod = getGetTransactionsMethod = 
+          BankServiceGrpc.getGetTransactionsMethod = getGetTransactionsMethod =
               io.grpc.MethodDescriptor.<ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest, ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "BankService", "getTransactions"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getTransactions"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("getTransactions"))
-                  .build();
-          }
+              .setSchemaDescriptor(new BankServiceMethodDescriptorSupplier("getTransactions"))
+              .build();
         }
-     }
-     return getGetTransactionsMethod;
+      }
+    }
+    return getGetTransactionsMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
   public static BankServiceStub newStub(io.grpc.Channel channel) {
-    return new BankServiceStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<BankServiceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<BankServiceStub>() {
+        @java.lang.Override
+        public BankServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new BankServiceStub(channel, callOptions);
+        }
+      };
+    return BankServiceStub.newStub(factory, channel);
   }
 
   /**
@@ -359,7 +344,14 @@ public final class BankServiceGrpc {
    */
   public static BankServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new BankServiceBlockingStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<BankServiceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<BankServiceBlockingStub>() {
+        @java.lang.Override
+        public BankServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new BankServiceBlockingStub(channel, callOptions);
+        }
+      };
+    return BankServiceBlockingStub.newStub(factory, channel);
   }
 
   /**
@@ -367,174 +359,115 @@ public final class BankServiceGrpc {
    */
   public static BankServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new BankServiceFutureStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<BankServiceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<BankServiceFutureStub>() {
+        @java.lang.Override
+        public BankServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new BankServiceFutureStub(channel, callOptions);
+        }
+      };
+    return BankServiceFutureStub.newStub(factory, channel);
   }
 
   /**
    */
-  public static abstract class BankServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public void customers(ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest request,
+    default void customers(ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.CustomersResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getCustomersMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCustomersMethod(), responseObserver);
     }
 
     /**
      */
-    public void customerByIdentity(ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest request,
+    default void customerByIdentity(ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getCustomerByIdentityMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCustomerByIdentityMethod(), responseObserver);
     }
 
     /**
      */
-    public void createCustomer(ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest request,
+    default void createCustomer(ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getCreateCustomerMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateCustomerMethod(), responseObserver);
     }
 
     /**
      */
-    public void updateCustomer(ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest request,
+    default void updateCustomer(ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getUpdateCustomerMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUpdateCustomerMethod(), responseObserver);
     }
 
     /**
      */
-    public void deleteCustomer(ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest request,
+    default void deleteCustomer(ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDeleteCustomerMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteCustomerMethod(), responseObserver);
     }
 
     /**
      */
-    public void bankAccounts(ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest request,
+    default void bankAccounts(ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.BankAccountsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getBankAccountsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getBankAccountsMethod(), responseObserver);
     }
 
     /**
      */
-    public void bankAccountByRib(ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest request,
+    default void bankAccountByRib(ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getBankAccountByRibMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getBankAccountByRibMethod(), responseObserver);
     }
 
     /**
      */
-    public void addBankAccount(ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest request,
+    default void addBankAccount(ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getAddBankAccountMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAddBankAccountMethod(), responseObserver);
     }
 
     /**
      */
-    public void addWirerTransfer(ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest request,
+    default void addWirerTransfer(ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getAddWirerTransferMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAddWirerTransferMethod(), responseObserver);
     }
 
     /**
      */
-    public void getTransactions(ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest request,
+    default void getTransactions(ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetTransactionsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetTransactionsMethod(), responseObserver);
     }
+  }
+
+  /**
+   * Base class for the server implementation of the service BankService.
+   */
+  public static abstract class BankServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getCustomersMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.CustomersResponse>(
-                  this, METHODID_CUSTOMERS)))
-          .addMethod(
-            getCustomerByIdentityMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityResponse>(
-                  this, METHODID_CUSTOMER_BY_IDENTITY)))
-          .addMethod(
-            getCreateCustomerMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerResponse>(
-                  this, METHODID_CREATE_CUSTOMER)))
-          .addMethod(
-            getUpdateCustomerMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerResponse>(
-                  this, METHODID_UPDATE_CUSTOMER)))
-          .addMethod(
-            getDeleteCustomerMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerResponse>(
-                  this, METHODID_DELETE_CUSTOMER)))
-          .addMethod(
-            getBankAccountsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.BankAccountsResponse>(
-                  this, METHODID_BANK_ACCOUNTS)))
-          .addMethod(
-            getBankAccountByRibMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibResponse>(
-                  this, METHODID_BANK_ACCOUNT_BY_RIB)))
-          .addMethod(
-            getAddBankAccountMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountResponse>(
-                  this, METHODID_ADD_BANK_ACCOUNT)))
-          .addMethod(
-            getAddWirerTransferMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferResponse>(
-                  this, METHODID_ADD_WIRER_TRANSFER)))
-          .addMethod(
-            getGetTransactionsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest,
-                ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsResponse>(
-                  this, METHODID_GET_TRANSACTIONS)))
-          .build();
+      return BankServiceGrpc.bindService(this);
     }
   }
 
   /**
+   * A stub to allow clients to do asynchronous rpc calls to service BankService.
    */
-  public static final class BankServiceStub extends io.grpc.stub.AbstractStub<BankServiceStub> {
-    private BankServiceStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private BankServiceStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class BankServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<BankServiceStub> {
+    private BankServiceStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected BankServiceStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected BankServiceStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new BankServiceStub(channel, callOptions);
     }
 
@@ -542,7 +475,7 @@ public final class BankServiceGrpc {
      */
     public void customers(ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.CustomersResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCustomersMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -550,7 +483,7 @@ public final class BankServiceGrpc {
      */
     public void customerByIdentity(ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCustomerByIdentityMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -558,7 +491,7 @@ public final class BankServiceGrpc {
      */
     public void createCustomer(ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCreateCustomerMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -566,7 +499,7 @@ public final class BankServiceGrpc {
      */
     public void updateCustomer(ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getUpdateCustomerMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -574,7 +507,7 @@ public final class BankServiceGrpc {
      */
     public void deleteCustomer(ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDeleteCustomerMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -582,7 +515,7 @@ public final class BankServiceGrpc {
      */
     public void bankAccounts(ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.BankAccountsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getBankAccountsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -590,7 +523,7 @@ public final class BankServiceGrpc {
      */
     public void bankAccountByRib(ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getBankAccountByRibMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -598,7 +531,7 @@ public final class BankServiceGrpc {
      */
     public void addBankAccount(ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAddBankAccountMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -606,7 +539,7 @@ public final class BankServiceGrpc {
      */
     public void addWirerTransfer(ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAddWirerTransferMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -614,115 +547,111 @@ public final class BankServiceGrpc {
      */
     public void getTransactions(ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest request,
         io.grpc.stub.StreamObserver<ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetTransactionsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service BankService.
    */
-  public static final class BankServiceBlockingStub extends io.grpc.stub.AbstractStub<BankServiceBlockingStub> {
-    private BankServiceBlockingStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private BankServiceBlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class BankServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<BankServiceBlockingStub> {
+    private BankServiceBlockingStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected BankServiceBlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected BankServiceBlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new BankServiceBlockingStub(channel, callOptions);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.CustomersResponse customers(ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCustomersMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityResponse customerByIdentity(ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCustomerByIdentityMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerResponse createCustomer(ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCreateCustomerMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerResponse updateCustomer(ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getUpdateCustomerMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerResponse deleteCustomer(ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDeleteCustomerMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.BankAccountsResponse bankAccounts(ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getBankAccountsMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibResponse bankAccountByRib(ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getBankAccountByRibMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountResponse addBankAccount(ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAddBankAccountMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferResponse addWirerTransfer(ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAddWirerTransferMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsResponse getTransactions(ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetTransactionsMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service BankService.
    */
-  public static final class BankServiceFutureStub extends io.grpc.stub.AbstractStub<BankServiceFutureStub> {
-    private BankServiceFutureStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private BankServiceFutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class BankServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<BankServiceFutureStub> {
+    private BankServiceFutureStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected BankServiceFutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected BankServiceFutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new BankServiceFutureStub(channel, callOptions);
     }
 
@@ -730,7 +659,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.CustomersResponse> customers(
         ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCustomersMethod(), getCallOptions()), request);
     }
 
@@ -738,7 +667,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityResponse> customerByIdentity(
         ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCustomerByIdentityMethod(), getCallOptions()), request);
     }
 
@@ -746,7 +675,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerResponse> createCustomer(
         ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCreateCustomerMethod(), getCallOptions()), request);
     }
 
@@ -754,7 +683,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerResponse> updateCustomer(
         ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getUpdateCustomerMethod(), getCallOptions()), request);
     }
 
@@ -762,7 +691,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerResponse> deleteCustomer(
         ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDeleteCustomerMethod(), getCallOptions()), request);
     }
 
@@ -770,7 +699,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.BankAccountsResponse> bankAccounts(
         ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getBankAccountsMethod(), getCallOptions()), request);
     }
 
@@ -778,7 +707,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibResponse> bankAccountByRib(
         ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getBankAccountByRibMethod(), getCallOptions()), request);
     }
 
@@ -786,7 +715,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountResponse> addBankAccount(
         ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAddBankAccountMethod(), getCallOptions()), request);
     }
 
@@ -794,7 +723,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferResponse> addWirerTransfer(
         ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAddWirerTransferMethod(), getCallOptions()), request);
     }
 
@@ -802,7 +731,7 @@ public final class BankServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsResponse> getTransactions(
         ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetTransactionsMethod(), getCallOptions()), request);
     }
   }
@@ -823,10 +752,10 @@ public final class BankServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final BankServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(BankServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -891,6 +820,81 @@ public final class BankServiceGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getCustomersMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.CustomersRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.CustomersResponse>(
+                service, METHODID_CUSTOMERS)))
+        .addMethod(
+          getCustomerByIdentityMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.CustomerByIdentityResponse>(
+                service, METHODID_CUSTOMER_BY_IDENTITY)))
+        .addMethod(
+          getCreateCustomerMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.CreateCustomerResponse>(
+                service, METHODID_CREATE_CUSTOMER)))
+        .addMethod(
+          getUpdateCustomerMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.UpdateCustomerResponse>(
+                service, METHODID_UPDATE_CUSTOMER)))
+        .addMethod(
+          getDeleteCustomerMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.DeleteCustomerResponse>(
+                service, METHODID_DELETE_CUSTOMER)))
+        .addMethod(
+          getBankAccountsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.BankAccountsRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.BankAccountsResponse>(
+                service, METHODID_BANK_ACCOUNTS)))
+        .addMethod(
+          getBankAccountByRibMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.BankAccountByRibResponse>(
+                service, METHODID_BANK_ACCOUNT_BY_RIB)))
+        .addMethod(
+          getAddBankAccountMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.AddBankAccountResponse>(
+                service, METHODID_ADD_BANK_ACCOUNT)))
+        .addMethod(
+          getAddWirerTransferMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.AddWirerTransferResponse>(
+                service, METHODID_ADD_WIRER_TRANSFER)))
+        .addMethod(
+          getGetTransactionsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsRequest,
+              ma.formations.multiconnector.grpc.stub.Bank.GetTransactionsResponse>(
+                service, METHODID_GET_TRANSACTIONS)))
+        .build();
+  }
+
   private static abstract class BankServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     BankServiceBaseDescriptorSupplier() {}
@@ -914,9 +918,9 @@ public final class BankServiceGrpc {
   private static final class BankServiceMethodDescriptorSupplier
       extends BankServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+    private final java.lang.String methodName;
 
-    BankServiceMethodDescriptorSupplier(String methodName) {
+    BankServiceMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
