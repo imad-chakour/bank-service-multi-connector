@@ -1,11 +1,11 @@
 import api from "./axiosConfig";
 
 const getCustomers = () => {
-  return api.get("/all");
+  return api.get("/agent_guichet/all");
 };
 
 const createCustomer = (identityRef, firstname, lastname, username) => {
-  return api.post("/create", {
+  return api.post("/agent_guichet/create", {
     identityRef,
     firstname,
     lastname,
@@ -14,7 +14,7 @@ const createCustomer = (identityRef, firstname, lastname, username) => {
 };
 
 const updateCustomer = (identityRef, firstname, lastname, username) => {
-  return api.put("/update/" + identityRef, {
+  return api.put("/agent_guichet/update/" + identityRef, {
     firstname,
     lastname,
     username,
@@ -22,7 +22,7 @@ const updateCustomer = (identityRef, firstname, lastname, username) => {
 };
 
 const deleteCustomer = (identityRef) => {
-  return api.delete("/delete/" + identityRef);
+  return api.delete("/agent_guichet/delete/" + identityRef);
 };
 
 const CustomersService = {

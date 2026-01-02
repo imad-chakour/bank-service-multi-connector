@@ -8,7 +8,13 @@ const CustomerList = ({ customers, editCustomer, deleteCustomer }) => {
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     if (user) {
-      setShowAgentGuichetBoard(user.roles.includes("ROLE_AGENT_GUICHET"));
+      // Gérer le cas où les rôles ne sont pas définis dans le token
+      const roles = user.roles || [];
+      setShowAgentGuichetBoard(
+        roles.includes("ROLE_AGENT_GUICHET") || 
+        roles.includes("ROLE_AGENT_GUICHET_GET") ||
+        user.username === "admin" // Donner accès à l'admin par défaut
+      );
     }
   }, []);
 

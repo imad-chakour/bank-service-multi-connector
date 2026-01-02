@@ -1,247 +1,392 @@
-# Bank Service Multi-Connector
+# 🏦 IR Bank 2026 - Multi-Connector Banking Service
 
-Une application bancaire micro-service implémentée avec Spring Boot 3.2.0 et Java 17, offrant quatre types d'API : REST, SOAP, GraphQL et gRPC avec authentification JWT.
+Une plateforme bancaire moderne avec microservices et API multiples (REST, SOAP, GraphQL, gRPC) construite avec Spring Boot backend et React frontend.
+
+## 📋 Table des matières
+
+- [🏗️ Architecture](#-architecture)
+- [🚀 Fonctionnalités](️-fonctionnalités)
+- [🛠️ Technologies](️-technologies)
+- [📦 Structure du projet](#-structure-du-projet)
+- [🔧 Installation](#-installation)
+- [👥 Comptes de test](#-comptes-de-test)
+- [🔐 Sécurité](#-sécurité)
+- [📚 Documentation API](#-documentation-api)
+- [🎨 Interface Utilisateur](#-interface-utilisateur)
+- [🐛 Dépannage](#-dépannage)
+
+---
 
 ## 🏗️ Architecture
 
-L'application suit une architecture en 3 couches :
+### Vue d'ensemble du système
 
-- **Data Access Layer** : Spring Data JPA avec H2 Database
-- **Business Layer** : Services métier avec logique de gestion
-- **Web Layer** : Quatre types d'API (REST, SOAP, GraphQL, gRPC)
+```mermaid
+graph TB
+    subgraph "Frontend (React)"
+        A[IR Bank 2026 UI]
+        B[Components React]
+        C[AuthService]
+        D[Services API]
+    end
+    
+    subgraph "Backend (Spring Boot)"
+        E[REST Controllers]
+        F[SOAP Services]
+        G[GraphQL API]
+        H[gRPC Services]
+        I[JWT Security]
+        J[H2 Database]
+    end
+    
+    A --> B
+    B --> C
+    B --> D
+    D --> E
+    D --> F
+    D --> G
+    D --> H
+    E --> I
+    F --> I
+    G --> I
+    H --> I
+    I --> J
+```
+
+### Flux d'authentification
+
+```mermaid
+sequenceDiagram
+    participant U as Utilisateur
+    participant F as Frontend React
+    participant B as Backend Spring
+    participant DB as H2 Database
+    
+    U->>F: Login (username/password)
+    F->>B: POST /auth/signin
+    B->>DB: Vérifier utilisateur
+    DB-->>B: Retourner utilisateur + rôles
+    B->>B: Générer JWT avec rôles
+    B-->>F: JWT Token + User info
+    F-->>U: Redirection vers Home
+    F->>F: Stocker token dans localStorage
+    
+    Note over F,B: Requêtes authentifiées
+    F->>B: API calls avec Bearer Token
+    B->>B: Valider JWT
+    B->>DB: Opérations selon permissions
+    DB-->>B: Données
+    B-->>F: Réponse
+```
+
+---
 
 ## 🚀 Fonctionnalités
 
-### Services Bancaires
-- Consultation de la liste des clients
-- Consultation d'un client par son identité
-- Consultation de la liste des comptes bancaires
-- Consultation d'un compte bancaire par son RIB
-- Virements entre comptes
-- Gestion des transactions
+### 🔐 Gestion des utilisateurs
+- **Authentification JWT** avec rôles et permissions
+- **Inscription** d'utilisateurs avec validation
+- **Profils utilisateur** personnalisés selon les rôles
+- **Gestion des rôles** : Admin, Agent Guichet, Client
 
-### Sécurité
-- Authentification JWT avec Spring Security
-- Gestion des rôles et permissions
-- Quatre types d'utilisateurs prédéfinis
+### 👥 Gestion des clients (Agents Guichet)
+- **CRUD complet** sur les clients
+- **Recherche** par identifiant
+- **Validation** des données client
+- **Permissions** granulaires par rôle
 
-## 🛠️ Technologies Utilisées
+### 🏦 Gestion des comptes bancaires
+- **Consultation** des comptes
+- **Recherche** par RIB
+- **Création** de nouveaux comptes
+- **Solde** et informations détaillées
 
-### Backend
-- **Java 17** - Langage principal
-- **Spring Boot 3.2.0** - Framework principal
-- **Spring Security** - Sécurité et authentification
-- **Spring Data JPA** - Accès aux données
-- **Spring GraphQL** - API GraphQL
-- **Apache CXF** - Services SOAP
-- **gRPC** - Services gRPC
-- **H2 Database** - Base de données en mémoire
-- **JWT (JJWT)** - Tokens d'authentification
-- **ModelMapper** - Mapping d'objets
-- **Lombok** - Réduction de code boilerplate
-- **OpenAPI/Swagger** - Documentation API REST
+### 💰 Virements bancaires
+- **Virements** entre comptes
+- **Validation** des soldes
+- **Confirmation** des transactions
+- **Historique** des opérations
 
-### Frontend
-- **React 18.2.0** - Framework frontend
-- **React Router DOM** - Routage
-- **Axios** - Client HTTP
-- **Bootstrap 5** - Framework CSS
-- **React Validation** - Validation des formulaires
+### 🌐 API Multi-protocoles
+- **REST API** : Opérations CRUD complètes
+- **SOAP API** : Intégration entreprise
+- **GraphQL** : Requêtes flexibles
+- **gRPC** : Communication haute performance
 
-## 📋 Prérequis
+---
 
-- Java 17 ou supérieur
-- Maven 3.6+
-- Node.js 14+ (pour le frontend)
-- npm ou yarn
-
-## 🚀 Démarrage Rapide
+## 🛠️ Technologies
 
 ### Backend
-
-1. **Cloner le repository**
-```bash
-git clone <repository-url>
-cd bank-service-multi-connecteur-jwt
-```
-
-2. **Compiler et démarrer l'application**
-```bash
-mvn clean install
-mvn spring-boot:run
-```
-
-L'application backend sera disponible sur :
-- **API REST** : http://localhost:8080
-- **Documentation Swagger** : http://localhost:8080/api/rest/docs-ui
-- **Console H2** : http://localhost:8080/h2
-- **GraphQL Playground** : http://localhost:8080/graphiql
-- **Services SOAP** : http://localhost:8080/api/soap
-- **Services gRPC** : localhost:7777
+- **Java 17** avec Spring Boot 3.x
+- **Spring Security** avec JWT
+- **Spring Data JPA** avec H2 Database
+- **ModelMapper** pour mapping DTO
+- **Lombok** pour réduction de code
+- **Validation** Jakarta Bean Validation
 
 ### Frontend
+- **React 18** avec Hooks
+- **React Router** pour navigation
+- **Axios** pour appels HTTP
+- **Bootstrap 5** pour UI
+- **Bootstrap Icons** pour icônes
+- **React Validation** pour formulaires
 
-1. **Naviguer vers le répertoire frontend**
-```bash
-cd src
-```
+### Base de données
+- **H2 In-Memory** avec console web
+- **Initialisation automatique** des données de test
+- **Relations Many-to-Many** pour rôles/permissions
 
-2. **Installer les dépendances**
-```bash
-npm install
-```
+---
 
-3. **Démarrer l'application**
-```bash
-npm start
-```
-
-L'application frontend sera disponible sur : http://localhost:3000
-
-## 🔐 Comptes de Test
-
-Quatre comptes utilisateurs sont pré-configurés :
-
-| Username | Password | Rôle | Permissions |
-|----------|----------|------|-------------|
-| `agentguichet` | `agentguichet` | Agent Guichet | CRUD complet sur clients et comptes |
-| `agentguichet2` | `agentguichet2` | Agent Guichet (Lecture) | Lecture seule sur clients et comptes |
-| `client` | `client` | Client | Consultation et virements |
-| `admin` | `admin` | Administrateur | Agent Guichet + Client |
-
-## 📚 Documentation des API
-
-### API REST
-- **Base URL** : http://localhost:8080/api/rest
-- **Documentation** : http://localhost:8080/api/rest/docs-ui
-- **Authentification** : Bearer Token JWT
-
-#### Endpoints principaux :
-- `POST /api/rest/auth/login` - Authentification
-- `GET /api/rest/customers` - Liste des clients
-- `GET /api/rest/customers/{identityRef}` - Client par ID
-- `POST /api/rest/customers` - Créer un client
-- `PUT /api/rest/customers/{identityRef}` - Mettre à jour un client
-- `DELETE /api/rest/customers/{identityRef}` - Supprimer un client
-- `GET /api/rest/bank-accounts` - Liste des comptes
-- `GET /api/rest/bank-accounts/{rib}` - Compte par RIB
-- `POST /api/rest/bank-accounts` - Créer un compte
-- `POST /api/rest/transactions/wire-transfer` - Effectuer un virement
-
-### API GraphQL
-- **URL** : http://localhost:8080/graphql
-- **Playground** : http://localhost:8080/graphiql
-
-#### Exemples de requêtes :
-```graphql
-query {
-  getAllCustomers {
-    identityRef
-    firstname
-    lastname
-    username
-  }
-}
-
-query {
-  getCustomerByIdentityRef(identityRef: "A100") {
-    identityRef
-    firstname
-    lastname
-    bankAccounts {
-      rib
-      amount
-    }
-  }
-}
-```
-
-### API SOAP
-- **WSDL** : http://localhost:8080/api/soap/bank?wsdl
-- **Endpoint** : http://localhost:8080/api/soap
-
-### API gRPC
-- **Port** : 7777
-- **Proto file** : `src/main/resources/bank.proto`
-
-## 🗄️ Base de Données
-
-L'application utilise une base de données H2 en mémoire avec les tables suivantes :
-
-- **users** - Utilisateurs et authentification
-- **roles** - Rôles utilisateurs
-- **permissions** - Permissions système
-- **user_roles** - Association utilisateurs-rôles
-- **role_permissions** - Association rôles-permissions
-- **customers** - Informations clients
-- **bank_accounts** - Comptes bancaires
-- **bank_account_transactions** - Transactions et virements
-
-## 🔧 Configuration
-
-### Variables d'environnement
-```properties
-# Base de données H2
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.username=sa
-spring.datasource.password=
-
-# JWT
-privite_key=@zeRtY1931
-expiration_delay=86400000
-
-# gRPC
-grpc.server.port=7777
-
-# SOAP
-cxf.path=/api/soap
-```
-
-## 🧪 Tests
-
-### Tests Backend
-```bash
-mvn test
-```
-
-### Tests Frontend
-```bash
-npm test
-```
-
-## 📝 Développement
-
-### Structure du Projet
+## 📦 Structure du projet
 
 ```
 bank-service-multi-connecteur-jwt/
-├── src/
-│   ├── main/
-│   │   ├── java/ma/formations/multiconnector/
-│   │   │   ├── config/          # Configurations Spring
-│   │   │   ├── dao/             # Repositories JPA
-│   │   │   ├── dtos/            # Data Transfer Objects
-│   │   │   ├── enums/           # Énumérations
-│   │   │   ├── model/           # Entités JPA
-│   │   │   ├── presentation/    # Controllers (REST/GraphQL/SOAP/gRPC)
-│   │   │   ├── service/         # Services métier
-│   │   │   └── common/          # Utilitaires
-│   │   └── resources/
-│   │       ├── application.properties
-│   │       ├── bank.proto       # Définition gRPC
-│   │       └── graphql/         # Schémas GraphQL
-│   └── frontend/                # Application React
-├── target/                      # Build Maven
-├── pom.xml                      # Configuration Maven
-└── package.json                 # Dépendances React
+├── 📁 src/
+│   ├── 📁 main/
+│   │   ├── 📁 java/ma/formations/multiconnector/
+│   │   │   ├── 📁 config/           # Configuration Spring Security
+│   │   │   ├── 📁 dao/              # Repositories JPA
+│   │   │   ├── 📁 dtos/             # Data Transfer Objects
+│   │   │   ├── 📁 jwt/              # JWT Utils & Filters
+│   │   │   ├── 📁 presentation/      # Controllers (REST, SOAP, GraphQL, gRPC)
+│   │   │   ├── 📁 service/          # Services métier
+│   │   │   └── 📁 service/model/     # Entités JPA
+│   │   └── 📁 resources/
+│   │       └── 📄 application.properties
+│   └── 📁 components/               # Composants React
+│       ├── 📄 Home.js               # Tableau de bord
+│       ├── 📄 Login.js              # Connexion
+│       ├── 📄 Register.js           # Inscription
+│       ├── 📄 Profile.js            # Profil utilisateur
+│       ├── 📄 NavBar.js             # Navigation
+│       ├── 📄 BankAccount.js        # Gestion comptes
+│       ├── 📄 WirerTransfert.js     # Virements
+│       └── 📄 CustomerList.js      # Liste clients
+├── 📁 services/                    # Services API React
+│   ├── 📄 auth.service.js
+│   ├── 📄 customers.service.js
+│   └── 📄 accounts.service.js
+├── 📄 package.json
+├── 📄 pom.xml
+└── 📄 README.md
 ```
 
-### Conventions de Code
-- Architecture en couches claire
-- Utilisation de DTOs pour les échanges API
-- Validation des entrées avec Bean Validation
-- Gestion centralisée des exceptions
-- Documentation avec OpenAPI/Swagger
+---
+
+## 🔧 Installation
+
+### Prérequis
+- **Java 17+** et **Maven 3.8+**
+- **Node.js 16+** et **npm 8+**
+
+### 1. Cloner le projet
+```bash
+git clone https://github.com/imad-chakour/bank-service-multi-connector.git
+cd bank-service-multi-connector
+```
+
+### 2. Démarrer le backend
+```bash
+# Compiler et démarrer Spring Boot
+mvn clean install
+mvn spring-boot:run
+
+# Le backend démarre sur http://localhost:8080
+# Console H2 disponible sur http://localhost:8080/h2-console
+```
+
+### 3. Démarrer le frontend
+```bash
+# Installer les dépendances
+npm install
+
+# Démarrer le serveur de développement
+npm start
+
+# Le frontend démarre sur http://localhost:3001
+```
+
+### 4. Accéder à l'application
+- **Frontend** : http://localhost:3001
+- **Backend API** : http://localhost:8080
+- **Console H2** : http://localhost:8080/h2-console
+  - **JDBC URL** : `jdbc:h2:mem:bankdb`
+  - **Username** : `sa`
+  - **Password** : `password`
+
+---
+
+## 👥 Comptes de test
+
+| Rôle | Username | Password | Permissions |
+|------|----------|----------|--------------|
+| **Admin** | `admin` | `admin` | 🔐 Accès complet à toutes les fonctionnalités |
+| **Agent Guichet** | `agentguichet` | `agentguichet` | 👥 Gestion clients/comptes/virements |
+| **Agent Guichet (Lecture)** | `agentguichet2` | `agentguichet2` | 👁️ Consultation uniquement |
+| **Client** | `client` | `client` | 💰 Consultation comptes/virements personnels |
+
+---
+
+## 🔐 Sécurité
+
+### Architecture JWT
+
+```mermaid
+graph LR
+    A[Login Request] --> B[Spring Security]
+    B --> C[UserDetailsService]
+    C --> D[Database User + Roles]
+    D --> E[JWT Generation]
+    E --> F[Response with Token]
+    
+    G[API Request] --> H[JWT Filter]
+    H --> I[Token Validation]
+    I --> J[Security Context]
+    J --> K[Controller]
+```
+
+### Rôles et Permissions
+
+| Rôle | Permissions |
+|------|-------------|
+| **ROLE_ADMIN** | Toutes les permissions |
+| **ROLE_AGENT_GUICHET** | CRUD clients/comptes, virements |
+| **ROLE_AGENT_GUICHET_GET** | Lecture seule |
+| **ROLE_CLIENT** | Consultation personnelle, virements |
+
+### Configuration JWT
+- **Secret** : `@zeRtY1931`
+- **Expiration** : 24 heures (86400000 ms)
+- **Algorithme** : HS512
+
+---
+
+## 📚 Documentation API
+
+### Endpoints REST
+
+#### Authentification
+```http
+POST /auth/signin
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+```
+
+#### Gestion Clients
+```http
+GET    /api/rest/customer/agent_guichet/all
+POST   /api/rest/customer/agent_guichet/create
+PUT    /api/rest/customer/agent_guichet/update/{id}
+DELETE /api/rest/customer/agent_guichet/delete/{id}
+```
+
+#### Gestion Comptes
+```http
+GET    /api/rest/bank/all
+GET    /api/rest/bank?rib={rib}
+POST   /api/rest/bank/create
+```
+
+#### Virements
+```http
+POST /api/rest/transaction/create
+Content-Type: application/json
+
+{
+  "fromRib": "RIB1",
+  "toRib": "RIB2",
+  "amount": 1000.00
+}
+```
+
+### Swagger UI
+- **URL** : http://localhost:8080/swagger-ui.html
+- **Documentation interactive** de toutes les APIs REST
+
+---
+
+## 🎨 Interface Utilisateur
+
+### Tableau de bord (Home)
+
+```mermaid
+graph TB
+    A[IR Bank 2026 Home] --> B[Statistiques]
+    A --> C[Navigation selon rôles]
+    A --> D[Actions rapides]
+    
+    B --> E[Total Clients]
+    B --> F[Total Comptes]
+    B --> G[Total Transactions]
+    
+    C --> H[Agent Guichet]
+    C --> I[Client]
+    
+    H --> J[Gestion Clients]
+    H --> K[Gestion Comptes]
+    H --> L[Virements]
+    
+    I --> M[Consultation Comptes]
+    I --> N[Virements Personnels]
+```
+
+### Composants React
+
+| Composant | Fonctionnalité | Rôles autorisés |
+|-----------|----------------|-----------------|
+| **Home** | Tableau de bord avec statistiques | Tous |
+| **Login** | Authentification JWT | Public |
+| **Register** | Inscription utilisateurs | Public |
+| **Profile** | Informations utilisateur + rôles | Authentifié |
+| **NavBar** | Navigation selon rôles | Authentifié |
+| **CustomerList** | Gestion clients CRUD | Agent Guichet+ |
+| **BankAccount** | Consultation/création comptes | Agent Guichet+ / Client |
+| **WirerTransfert** | Virements bancaires | Agent Guichet / Client |
+
+---
+
+## 🐛 Dépannage
+
+### Problèmes courants
+
+#### 1. Token JWT avec rôles vides
+**Symptôme** : `"roles":[]` dans le token
+**Solution** : Vérifier les logs du backend pour le debugging des rôles
+
+#### 2. Erreur 403 Access Denied
+**Symptôme** : Accès refusé aux endpoints
+**Solution** : Vérifier que les permissions sont correctement configurées dans `SecurityConfiguration`
+
+#### 3. Erreur 500 Internal Server Error
+**Symptôme** : Erreur serveur sur les endpoints
+**Solution** : Consulter les logs du backend et vérifier la console H2
+
+#### 4. Icônes Bootstrap non affichées
+**Symptôme** : Icônes manquantes dans l'interface
+**Solution** : Vérifier que Bootstrap Icons CDN est bien inclus dans `index.html`
+
+### Configuration de développement
+
+#### Activer les logs de debug
+```properties
+# application.properties
+logging.level.ma.formations.multiconnector=DEBUG
+logging.level.org.springframework.security=DEBUG
+```
+
+#### Console H2
+- **URL** : http://localhost:8080/h2-console
+- **Driver Class** : `org.h2.Driver`
+- **JDBC URL** : `jdbc:h2:mem:bankdb`
+
+---
 
 ## 🤝 Contribuer
 
@@ -251,17 +396,28 @@ bank-service-multi-connecteur-jwt/
 4. Push vers la branche (`git push origin feature/amazing-feature`)
 5. Ouvrir une Pull Request
 
+---
+
 ## 📄 Licence
 
-Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
-
-## 📞 Support
-
-Pour toute question ou support technique, veuillez contacter :
-- Email : support@bank-service.com
-- Issues GitHub : [Issues du projet]
+Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour détails.
 
 ---
 
-**Développé avec ❤️ par Abbou Formations**
+## 👨‍💻 Auteur
+
+**Imad Chakour** - *Initial work* - [imad-chakour](https://github.com/imad-chakour)
+
+---
+
+## 🙏 Remerciements
+
+- Spring Boot team pour le framework excellent
+- React team pour la bibliothèque UI moderne
+- Bootstrap team pour les composants UI
+- L'équipe de formation pour les spécifications
+
+---
+
+*📅 Dernière mise à jour : Janvier 2026*
 

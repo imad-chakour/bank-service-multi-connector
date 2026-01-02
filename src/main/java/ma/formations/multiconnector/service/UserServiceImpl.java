@@ -36,18 +36,55 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+        
+        // Debug: Afficher les rôles de l'utilisateur depuis la base de données
+        System.out.println("DEBUG: User " + username + " has " + user.getAuthorities().size() + " roles");
+        user.getAuthorities().forEach(role -> {
+            System.out.println("DEBUG: Role from DB: " + role.getAuthority());
+            role.getAuthorities().forEach(permission -> {
+                System.out.println("DEBUG: Permission: " + permission.getAuthority());
+            });
+        });
+        
         UserVo userVo = modelMapper.map(user, UserVo.class);
         
-        // Conserver les rôles originaux et ajouter les permissions comme autorités
-        List<RoleVo> allAuthorities = new ArrayList<>(userVo.getRoles());
+        // Debug: Vérifier le mapping
+        System.out.println("DEBUG: UserVo after mapping has " + userVo.getRoles().size() + " roles");
+        userVo.getRoles().forEach(role -> {
+            System.out.println("DEBUG: RoleVo: " + role.getAuthority());
+        });
         
-        // Ajouter les permissions de chaque rôle comme autorités individuelles
-        userVo.getRoles().forEach(
-                roleVo -> roleVo.getAuthorities().forEach(
-                        permission -> allAuthorities.add(
-                                RoleVo.builder().authority(permission.getAuthority()).build())));
+        // Créer une liste qui contient les rôles originaux ET les permissions comme autorités
+        List<RoleVo> allAuthorities = new ArrayList<>();
+        
+        // Ajouter les rôles originaux
+        if (user.getAuthorities() != null) {
+            user.getAuthorities().forEach(role -> {
+                RoleVo roleVo = RoleVo.builder()
+                        .authority(role.getAuthority())
+                        .build();
+                allAuthorities.add(roleVo);
+                
+                // Ajouter les permissions de chaque rôle comme autorités individuelles
+                if (role.getAuthorities() != null) {
+                    role.getAuthorities().forEach(permission -> {
+                        RoleVo permissionVo = RoleVo.builder()
+                                .authority(permission.getAuthority())
+                                .build();
+                        allAuthorities.add(permissionVo);
+                    });
+                }
+            });
+        }
         
         userVo.setRoles(allAuthorities);
+        
+        // Debug: Vérifier le résultat final
+        System.out.println("DEBUG: Final UserVo has " + userVo.getRoles().size() + " authorities");
+        userVo.getRoles().forEach(auth -> {
+            System.out.println("DEBUG: Final authority: " + auth.getAuthority());
+        });
+        
         return userVo;
     }
 

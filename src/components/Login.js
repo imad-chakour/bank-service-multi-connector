@@ -1,17 +1,15 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../services/auth.service";
-// import login from "../images/login.png";
-const login = "https://via.placeholder.com/225x105?text=Login";
 
 const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
-        This field is required!
+        Ce champ est obligatoire!
       </div>
     );
   }
@@ -65,49 +63,105 @@ const Login = () => {
   return (
     <div className="col-md-12">
       <div className="card card-container">
-        <img
-          src={login}
-          alt="profile-img"
-          className="profile-img-card"
-        />
+        {/* Icône SVG moderne pour la banque */}
+        <div className="text-center mb-4">
+          <svg
+            width="80"
+            height="80"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="mb-3"
+          >
+            <path
+              d="M3 21L21 21"
+              stroke="#0d6efd"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M5 21L5 9L19 9L19 21"
+              stroke="#0d6efd"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M5 9L12 3L19 9"
+              stroke="#0d6efd"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M9 21L9 13L15 13L15 21"
+              stroke="#0d6efd"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <h3 className="text-primary">IR Bank 2026</h3>
+          <p className="text-muted">Connectez-vous à votre espace bancaire</p>
+        </div>
+        
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="form-label">
+              <i className="bi bi-person-fill me-2"></i>Nom d'utilisateur
+            </label>
             <Input
               type="text"
               className="form-control"
               name="username"
+              placeholder="Entrez votre nom d'utilisateur"
               value={username}
               onChange={onChangeUsername}
               validations={[required]}
             />
           </div>
+          
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="form-label">
+              <i className="bi bi-lock-fill me-2"></i>Mot de passe
+            </label>
             <Input
               type="password"
               className="form-control"
               name="password"
+              placeholder="Entrez votre mot de passe"
               value={password}
               onChange={onChangePassword}
               validations={[required]}
             />
           </div>
+          
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button className="btn btn-primary btn-block w-100" disabled={loading}>
               {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
+                <span className="spinner-border spinner-border-sm me-2"></span>
               )}
-              <span>Login</span>
+              <i className="bi bi-box-arrow-in-right me-2"></i>
+              Se connecter
             </button>
           </div>
+          
           {message && (
             <div className="form-group">
               <div className="alert alert-danger" role="alert">
+                <i className="bi bi-exclamation-triangle-fill me-2"></i>
                 {message}
               </div>
             </div>
           )}
+          
+          <div className="text-center mt-3">
+            <small className="text-muted">
+              Pas encore de compte? <Link to="/register" className="text-primary">Créer un compte</Link>
+            </small>
+          </div>
+          
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>

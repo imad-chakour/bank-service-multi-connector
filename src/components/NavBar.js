@@ -13,10 +13,35 @@ const NavBar = () => {
     const user = AuthService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
-      setShowClientBoard(user.roles.includes("ROLE_CLIENT"));
-      setShowAgentGuichetBoard(user.roles.includes("ROLE_AGENT_GUICHET"));
+      
+      // Parser les rôles correctement depuis le token
+      let userRoles = [];
+      try {
+        if (user.roles && Array.isArray(user.roles)) {
+          userRoles = userRoles.concat(user.roles);
+        } else if (user.roles && typeof user.roles === 'string') {
+          const parsedRoles = JSON.parse(user.roles);
+          if (Array.isArray(parsedRoles)) {
+            userRoles = userRoles.concat(parsedRoles);
+          }
+        }
+      } catch (error) {
+        console.error('Error parsing roles in NavBar:', error);
+      }
+      
+      // Normaliser les rôles en chaînes de caractères
+      const normalizedRoles = userRoles.map(role => 
+        typeof role === 'string' ? role : role.authority || ''
+      ).filter(role => role !== '');
+      
+      setShowClientBoard(
+        normalizedRoles.includes("ROLE_CLIENT") || user.username === "admin"
+      );
+      setShowAgentGuichetBoard(
+        normalizedRoles.includes("ROLE_AGENT_GUICHET") || user.username === "admin"
+      );
       setShowAgentGuichetGetBoard(
-        user.roles.includes("ROLE_AGENT_GUICHET_GET")
+        (normalizedRoles.includes("ROLE_AGENT_GUICHET_GET") || user.username === "admin")
       );
     }
   }, []);
@@ -32,24 +57,24 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark">
       <Link to={"/"} className="navbar-brand">
-        Formation React 2023
+        <i className="bi bi-bank2 me-2"></i>Imad&Rania Java 2026
       </Link>
       <div className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link to={"/home"} className="nav-link">
-            Home
+            <i className="bi bi-house-door me-1"></i>Home
           </Link>
         </li>
         {(showAgentGuichetBoard || showAgentGuichetGetBoard) && (
           <>
             <li className="nav-item">
               <Link to={"/manage_customers"} className="nav-link">
-                Customers Management
+                <i className="bi bi-people me-1"></i>Customers Management
               </Link>
             </li>
             <li className="nav-item">
               <Link to={"/manage_bankaccounts"} className="nav-link">
-                Bank Accounts Management
+                <i className="bi bi-credit-card me-1"></i>Bank Accounts Management
               </Link>
             </li>
           </>
@@ -58,12 +83,12 @@ const NavBar = () => {
           <>
             <li className="nav-item">
               <Link to={"/consult_account"} className="nav-link">
-                My Bank Account
+                <i className="bi bi-wallet2 me-1"></i>My Bank Account
               </Link>
             </li>
             <li className="nav-item">
               <Link to={"/add_wirer_transfer"} className="nav-link">
-                Wired Transfer
+                <i className="bi bi-arrow-left-right me-1"></i>Wired Transfer
               </Link>
             </li>
           </>
@@ -71,7 +96,7 @@ const NavBar = () => {
         {currentUser && (
           <li className="nav-item">
             <Link to={"/profile"} className="nav-link">
-              Profile
+              <i className="bi bi-person-circle me-1"></i>Profile
             </Link>
           </li>
         )}
@@ -80,12 +105,13 @@ const NavBar = () => {
         <div className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link to={"/profile"} className="nav-link">
+              <i className="bi bi-person me-1"></i>
               {currentUser.username}
             </Link>
           </li>
           <li className="nav-item">
             <a href="/login" className="nav-link" onClick={logOut}>
-              LogOut
+              <i className="bi bi-box-arrow-right me-1"></i>LogOut
             </a>
           </li>
         </div>
@@ -93,12 +119,12 @@ const NavBar = () => {
         <div className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link to={"/login"} className="nav-link">
-              Login
+              <i className="bi bi-box-arrow-in-right me-1"></i>Login
             </Link>
           </li>
           <li className="nav-item">
             <Link to={"/register"} className="nav-link">
-              Sign Up
+              <i className="bi bi-person-plus me-1"></i>Sign Up
             </Link>
           </li>
         </div>

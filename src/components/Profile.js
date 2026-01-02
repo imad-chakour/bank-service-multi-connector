@@ -4,14 +4,28 @@ import AuthService from "../services/auth.service";
 const Profile = () => {
   const [jwtToken, setJwtToken] = useState("");
   const [username, setUsername] = useState("");
-  const [roles, setRoles] = useState("");
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     if (user) {
       setJwtToken(user.jwtToken);
       setUsername(user.username);
-      setRoles(user.roles);
+      
+      // Parser les rôles depuis le token JWT
+      try {
+        if (user.roles && Array.isArray(user.roles)) {
+          setRoles(user.roles);
+        } else if (user.roles && typeof user.roles === 'string') {
+          const parsedRoles = JSON.parse(user.roles);
+          setRoles(Array.isArray(parsedRoles) ? parsedRoles : []);
+        } else {
+          setRoles([]);
+        }
+      } catch (error) {
+        console.error('Error parsing roles:', error);
+        setRoles([]);
+      }
     }
   }, []);
 
@@ -30,14 +44,17 @@ const Profile = () => {
             </tr>
           </thead>
           <tbody>
-            {roles instanceof Array &&
-              roles.map((role, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{role}</td>
-                  </tr>
-                );
-              })}
+            {roles && roles.length > 0 ? (
+              roles.map((role, index) => (
+                <tr key={index}>
+                  <td>{typeof role === 'string' ? role : role.authority || 'Unknown role'}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td>No roles found</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </header>
