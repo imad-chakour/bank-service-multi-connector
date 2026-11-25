@@ -17,6 +17,7 @@ public class User {
     @Id
     @GeneratedValue
     protected Long id;
+    @Column(unique = true, nullable = false)
     protected String username;
     protected String firstname;
     protected String lastname;

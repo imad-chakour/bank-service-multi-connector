@@ -55,11 +55,11 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark">
+    <nav className="navbar navbar-expand navbar-dark bg-dark px-3">
       <Link to={"/"} className="navbar-brand">
-        <i className="bi bi-bank2 me-2"></i>Imad&Rania Java 2026
+        <i className="bi bi-bank2 me-2"></i>BankLink
       </Link>
-      <div className="navbar-nav mr-auto">
+      <div className="navbar-nav ms-auto flex-row flex-wrap justify-content-end">
         <li className="nav-item">
           <Link to={"/home"} className="nav-link">
             <i className="bi bi-house-door me-1"></i>Home
@@ -102,7 +102,7 @@ const NavBar = () => {
         )}
       </div>
       {currentUser ? (
-        <div className="navbar-nav ml-auto">
+        <div className="navbar-nav flex-row flex-wrap">
           <li className="nav-item">
             <Link to={"/profile"} className="nav-link">
               <i className="bi bi-person me-1"></i>
@@ -116,7 +116,7 @@ const NavBar = () => {
           </li>
         </div>
       ) : (
-        <div className="navbar-nav ml-auto">
+        <div className="navbar-nav flex-row">
           <li className="nav-item">
             <Link to={"/login"} className="nav-link">
               <i className="bi bi-box-arrow-in-right me-1"></i>Login
@@ -134,4 +134,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

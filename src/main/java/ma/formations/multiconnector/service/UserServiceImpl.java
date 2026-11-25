@@ -10,6 +10,7 @@ import ma.formations.multiconnector.dtos.user.UserVo;
 import ma.formations.multiconnector.service.model.Permission;
 import ma.formations.multiconnector.service.model.Role;
 import ma.formations.multiconnector.service.model.User;
+import ma.formations.multiconnector.service.exception.BusinessException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -90,6 +91,10 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
     @Override
     public void save(UserVo userVo) {
+        if (userRepository.existsByUsername(userVo.getUsername())) {
+            throw new BusinessException("Ce nom d'utilisateur est déjà utilisé");
+        }
+
         User user = modelMapper.map(userVo, User.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 

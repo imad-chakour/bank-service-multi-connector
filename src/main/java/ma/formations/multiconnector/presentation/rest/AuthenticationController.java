@@ -11,6 +11,7 @@ import ma.formations.multiconnector.service.IUserService;
 import ma.formations.multiconnector.service.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -34,28 +35,29 @@ public class AuthenticationController {
 
     @PostMapping("/signin")
     public ResponseEntity<TokenVo> authenticateUser(@RequestBody UserRequest userRequest) {
+        Authentication authentication;
         try {
-            Authentication authentication = authenticationManager
+            authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(
                             userRequest.username(),
                             userRequest.password()
                     ));
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            String jwt = jwtUtils.generateJwtToken(authentication);
-
-            TokenVo tokenVo = TokenVo.builder()
-                    .jwtToken(jwt)
-                    .username(userRequest.username())
-                    .roles(authentication.getAuthorities().stream()
-                            .map(GrantedAuthority::getAuthority)
-                            .collect(Collectors.toList()))
-                    .build();
-
-            return ResponseEntity.ok(tokenVo);
-        } catch (Exception e) {
+        } catch (AuthenticationException e) {
             throw new BusinessException("Login ou mot de passe incorrect");
         }
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        TokenVo tokenVo = TokenVo.builder()
+                .jwtToken(jwt)
+                .username(userRequest.username())
+                .roles(authentication.getAuthorities().stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
+                .build();
+
+        return ResponseEntity.ok(tokenVo);
     }
 
     @PostMapping("/signup")

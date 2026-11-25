@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -16,13 +16,21 @@ const required = (value) => {
 };
 
 const Login = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
   const form = useRef();
   const checkBtn = useRef();
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(location.state?.username || "");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(
+    location.state?.registrationSuccess
+      ? "Compte créé avec succès. Vous pouvez vous connecter."
+      : ""
+  );
+  const [messageType, setMessageType] = useState(
+    location.state?.registrationSuccess ? "success" : "danger"
+  );
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -37,6 +45,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setMessage("");
+    setMessageType("danger");
     setLoading(true);
     form.current.validateAll();
     if (checkBtn.current.context._errors.length === 0) {
@@ -46,10 +55,11 @@ const Login = () => {
           window.location.reload();
         })
         .catch((error) => {
+          const errorData = error.response && error.response.data;
           const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
+            (errorData &&
+              ((errorData.details && errorData.details[0]) ||
+                errorData.message)) ||
             error.message ||
             error.toString();
           setLoading(false);
@@ -149,8 +159,14 @@ const Login = () => {
           
           {message && (
             <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                <i className="bi bi-exclamation-triangle-fill me-2"></i>
+              <div className={`alert alert-${messageType}`} role="alert">
+                <i
+                  className={`bi ${
+                    messageType === "success"
+                      ? "bi-check-circle-fill"
+                      : "bi-exclamation-triangle-fill"
+                  } me-2`}
+                ></i>
                 {message}
               </div>
             </div>
@@ -170,4 +186,3 @@ const Login = () => {
 };
 
 export default Login;
-
