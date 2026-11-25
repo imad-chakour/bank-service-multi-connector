@@ -219,6 +219,38 @@ npm start
 
 ---
 
+## 🚀 Déploiement Docker avec PostgreSQL (OCI ou autre VM)
+
+Le projet peut être déployé sans base managée OCI : PostgreSQL tourne dans un conteneur Docker et ses données sont conservées dans le volume `postgres_data`. Le backend et la base ne publient pas leurs ports sur Internet ; seul le frontend est exposé.
+
+### Prérequis
+- Docker Engine avec le plugin Docker Compose
+- Une VM Linux accessible en SSH (par exemple une instance OCI)
+- Ouvrir uniquement les ports nécessaires dans le pare-feu réseau de la VM (80/443 et SSH restreint à votre adresse)
+
+### Lancement
+```bash
+git clone https://github.com/imad-chakour/bank-service-multi-connector.git
+cd bank-service-multi-connector
+cp .env.example .env
+```
+
+Générer des secrets aléatoires (la clé JWT doit être encodée en Base64) :
+```bash
+openssl rand -base64 32
+openssl rand -base64 64
+```
+Copier les deux résultats dans `DB_PASSWORD` puis `JWT_SECRET` dans `.env`. Pour un accès public, remplacer `CORS_ALLOWED_ORIGINS` par l'origine exacte du site (par exemple `http://<IP-PUBLIQUE>` ou `https://<votre-domaine>`), puis lancer :
+```bash
+docker compose up -d --build
+```
+
+L'interface sera disponible sur `http://<IP-PUBLIQUE-DE-LA-VM>`. Le profil `prod` utilise PostgreSQL et ne crée pas les comptes ni les données de démonstration. Les tables/permissions nécessaires sont initialisées au démarrage. Pour arrêter les conteneurs sans supprimer les données : `docker compose down`. Ne pas utiliser `docker compose down -v`, car cette commande supprime aussi les données PostgreSQL.
+
+Pour les déploiements publics, ajouter HTTPS avec un nom de domaine et un proxy TLS, puis définir `CORS_ALLOWED_ORIGINS` avec l'origine du site. Le volume Docker protège contre la recréation du conteneur, mais pas contre la perte du disque/VM : prévoir des sauvegardes PostgreSQL hors de la VM.
+
+---
+
 ## 👥 Comptes de test
 
 | Rôle | Username | Password | Permissions |
@@ -420,4 +452,3 @@ Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour détail
 ---
 
 *📅 Dernière mise à jour : Janvier 2026*
-

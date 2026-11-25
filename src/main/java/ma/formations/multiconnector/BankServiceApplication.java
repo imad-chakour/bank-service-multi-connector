@@ -6,6 +6,7 @@ import ma.formations.multiconnector.dtos.transaction.AddWirerTransferRequest;
 import ma.formations.multiconnector.dtos.user.PermissionVo;
 import ma.formations.multiconnector.dtos.user.RoleVo;
 import ma.formations.multiconnector.dtos.user.UserVo;
+import ma.formations.multiconnector.dao.UserRepository;
 import ma.formations.multiconnector.enums.Permissions;
 import ma.formations.multiconnector.enums.Roles;
 import ma.formations.multiconnector.service.IBankAccountService;
@@ -15,7 +16,9 @@ import ma.formations.multiconnector.service.IUserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -35,7 +38,10 @@ public class BankServiceApplication {
     }
 
     @Bean
-    CommandLineRunner initSecurityData(IUserService userService) {
+    CommandLineRunner initSecurityData(
+            IUserService userService,
+            UserRepository userRepository,
+            @Value("${app.seed-demo-users:true}") boolean seedDemoUsers) {
         return args -> {
             // Ajouter toutes les permissions
             Arrays.stream(Permissions.values()).toList().forEach(permission ->
@@ -122,14 +128,17 @@ public class BankServiceApplication {
                     .email("admin@bank.com")
                     .build();
 
-            userService.save(agentGuichet);
-            userService.save(agentGuichet2);
-            userService.save(client);
-            userService.save(admin);
+            if (seedDemoUsers) {
+                if (!userRepository.existsByUsername(agentGuichet.getUsername())) userService.save(agentGuichet);
+                if (!userRepository.existsByUsername(agentGuichet2.getUsername())) userService.save(agentGuichet2);
+                if (!userRepository.existsByUsername(client.getUsername())) userService.save(client);
+                if (!userRepository.existsByUsername(admin.getUsername())) userService.save(admin);
+            }
         };
     }
 
     @Bean
+    @Profile("!prod")
     CommandLineRunner initDataBase(ICustomerService customerService,
                                    IBankAccountService bankAccountService,
                                    ITransactionService transactionService) {

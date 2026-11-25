@@ -2,7 +2,7 @@ import axios from "axios";
 import AuthService from "./auth.service";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080/api/rest/customer",
+  baseURL: "/api/rest/customer",
 });
 
 api.interceptors.request.use(
@@ -19,4 +19,3 @@ api.interceptors.request.use(
 );
 
 export default api;
-

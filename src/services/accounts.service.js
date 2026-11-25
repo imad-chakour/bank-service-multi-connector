@@ -2,7 +2,7 @@ import axios from "axios";
 import AuthService from "./auth.service";
 
 const accountsApi = axios.create({
-  baseURL: "http://localhost:8080/api/rest/bank",
+  baseURL: "/api/rest/bank",
 });
 
 accountsApi.interceptors.request.use(
@@ -31,7 +31,7 @@ const createAccount = (accountData) => {
 };
 
 const transfer = (fromRib, toRib, amount) => {
-  return axios.post("http://localhost:8080/api/rest/transaction/create", {
+  return axios.post("/api/rest/transaction/create", {
     fromRib,
     toRib,
     amount

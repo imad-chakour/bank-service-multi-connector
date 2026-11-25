@@ -7,6 +7,7 @@ import ma.formations.multiconnector.dao.UserRepository;
 import ma.formations.multiconnector.dtos.user.PermissionVo;
 import ma.formations.multiconnector.dtos.user.RoleVo;
 import ma.formations.multiconnector.dtos.user.UserVo;
+import ma.formations.multiconnector.service.exception.BusinessException;
 import ma.formations.multiconnector.service.model.Permission;
 import ma.formations.multiconnector.service.model.Role;
 import ma.formations.multiconnector.service.model.User;
@@ -111,6 +112,10 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
     @Override
     public void save(RoleVo roleVo) {
+        if (roleRepository.existsByAuthority(roleVo.getAuthority())) {
+            return;
+        }
+
         Role role = modelMapper.map(roleVo, Role.class);
         role.setAuthorities(roleVo.getAuthorities().stream().map(bo ->
                 permissionRepository.findByAuthority(bo.getAuthority()).get()).
@@ -120,6 +125,10 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
     @Override
     public void save(PermissionVo vo) {
+        if (permissionRepository.existsByAuthority(vo.getAuthority())) {
+            return;
+        }
+
         permissionRepository.save(modelMapper.map(vo, Permission.class));
     }
 
