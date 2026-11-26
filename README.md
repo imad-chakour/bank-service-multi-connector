@@ -1,6 +1,6 @@
 # 🏦 IR Bank 2026 - Multi-Connector Banking Service
 
-Une plateforme bancaire moderne avec microservices et API multiples (REST, SOAP, GraphQL, gRPC) construite avec Spring Boot backend et React frontend.
+Une plateforme bancaire moderne avec microservices et API multiples (REST, SOAP, GraphQL, gRPC) construite avec Spring Boot backend et React frontend
 
 ## 📋 Table des matières
 
